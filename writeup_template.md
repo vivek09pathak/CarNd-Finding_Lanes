@@ -27,7 +27,7 @@ The goals / steps of this project are the following:
      *  **Step 1:** Converting my image to Gray-Scale.
      *  **Step 2:** Applying Gaussian blur to Gray-Scale image for further smoothening and suppressing noise and eliminating spurious                        gradients by averaging and save image output in the blur.
      *  **Step 3:** On Gaussian smoothen image called blur we apply canny edge detection to detect edges on the image by setting                             threshold.
-     *  **Step 4**  Now, masking image with region_of_interest function on canny image(edge).I have taken a quadrilateral polygon as                         region of interest.
+     *  **Step 4**  Now, masking image with region_of_interest function on canny image(edge).I have taken a quadrilateral polygon as                         region of interest for Video and  have taken differents ROI.As for **solidWhiteRight** (0,imshape[0]),(410,340), (590,340),(imshape[1],imshape[0]) and for **solidYellowLeft** (0,imshape[0]),(410,360), (590,360),(imshape[1],imshape[0])
      *  **Step 5**  Apply hough transform on region of interest image(mask) to get lane lines on the road.
      *  **Step 6**  Extrapolating on lines detcted from hough transform to draw continous lines on the image.
      *  **Step 7**  Image obtained from Extrapolating we apply it with initial image to get final image as result.
