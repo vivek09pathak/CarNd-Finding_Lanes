@@ -11,12 +11,12 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: C:\Users\Vivek.Pathak01\Desktop\Lane Lines\CarND-LaneLines-P1-master\test_images_output\solidWhiteCurve.jpg
-[image2]: C:\Users\Vivek.Pathak01\Desktop\Lane Lines\CarND-LaneLines-P1-master\test_images_output\solidWhiteRight.jpg  "solidWhiteRight"
-[image3]: C:\Users\Vivek.Pathak01\Desktop\Lane Lines\CarND-LaneLines-P1-master\test_images_output\solidYellowCurve.jpg "solidYellowCurve"
-[image4]: C:\Users\Vivek.Pathak01\Desktop\Lane Lines\CarND-LaneLines-P1-master\test_images_output\solidYellowCurve2.jpg "solidYellowCurve2"
-[image5]: C:\Users\Vivek.Pathak01\Desktop\Lane Lines\CarND-LaneLines-P1-master\test_images_output\solidYellowLeft.jpg "solidYellowLeft"
-[image6]: C:\Users\Vivek.Pathak01\Desktop\Lane Lines\CarND-LaneLines-P1-master\test_images_output\whiteCarLaneSwitch.jpg "whiteCarLaneSwitch"
+[image1]: ./test_images_output/solidWhiteCurve.jpg "solidWhiteCurve"
+[image2]: ./test_images_output/solidWhiteRight.jpg  "solidWhiteRight"
+[image3]: ./test_images_output/solidYellowCurve.jpg "solidYellowCurve"
+[image4]: ./test_images_output/solidYellowCurve2.jpg "solidYellowCurve2"
+[image5]: ./test_images_output/solidYellowLeft.jpg "solidYellowLeft"
+[image6]: ./test_images_output/whiteCarLaneSwitch.jpg "whiteCarLaneSwitch"
 
 ---
 
