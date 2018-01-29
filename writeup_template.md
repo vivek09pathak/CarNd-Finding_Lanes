@@ -48,10 +48,9 @@ Below are the output of an image:
 
 ### 2. Identify potential shortcomings with your current pipeline
    * One potential shortcoming would be that taking in consideration of previous frame to draw lines in-case of no lines detected 
-   * Secondly,the pipeline will able to detect only straight lines not curved lines.
+   * Secondly,the pipeline will not able to detect different intesity of same color on the lane.
 
 
 ### 3. Suggest possible improvements to your pipeline
-   * A possible improvement would be that choosing dynamically Region of interest so that curved lines could possibly be detected on the road.
-   * Taking average of 5-10 previous frame so that in case no line is detected still lines are drawn and continuity remains in the lanes.
-   * Lastly,improvement could be use of color channels instead of RGB so that if there if there is bad frames due to shadow or bad light still the frames could be detected.
+   * A possible improvement would be that building method to able to generate different region of interest for different situations.
+   * Using different models to detect color of lines of different intensity for same color due to shadow,etc so that lane can be indentified correctly.
