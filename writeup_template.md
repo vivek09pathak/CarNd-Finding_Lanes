@@ -11,7 +11,12 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/grayscale.jpg "Grayscale"
+[image1]: C:\Users\Vivek.Pathak01\Desktop\Lane Lines\CarND-LaneLines-P1-master\test_images_output\solidWhiteCurve.jpg
+[image2]: C:\Users\Vivek.Pathak01\Desktop\Lane Lines\CarND-LaneLines-P1-master\test_images_output\solidWhiteRight.jpg  "solidWhiteRight"
+[image3]: C:\Users\Vivek.Pathak01\Desktop\Lane Lines\CarND-LaneLines-P1-master\test_images_output\solidYellowCurve.jpg "solidYellowCurve"
+[image4]: C:\Users\Vivek.Pathak01\Desktop\Lane Lines\CarND-LaneLines-P1-master\test_images_output\solidYellowCurve2.jpg "solidYellowCurve2"
+[image5]: C:\Users\Vivek.Pathak01\Desktop\Lane Lines\CarND-LaneLines-P1-master\test_images_output\solidYellowLeft.jpg "solidYellowLeft"
+[image6]: C:\Users\Vivek.Pathak01\Desktop\Lane Lines\CarND-LaneLines-P1-master\test_images_output\whiteCarLaneSwitch.jpg "whiteCarLaneSwitch"
 
 ---
 
@@ -31,9 +36,14 @@ The goals / steps of this project are the following:
 		* From the draw_lines function I have called the extrapolating_lines() function with lines obtained from hough transform and masked image on which lines has to been drawn.In function I have appended the left and right coordinates	in array by taking midpoint of the image and slope < 0.2 to segregate left lane otherwise as right lane.For non empty array passed array of x and y coordinates in polyfit function to get slope and coefficient of gradient for the lanes.Then, passed the masked image,polyfit values and array of x,y values to respective right and left lane function to draw lines.To draw lines,Taken min and max value from the array for x coordinates and put those value in Y=mX+c function to get y-coordinates and drawn lines using cv.line() function.	 
 		* For the bad frames where vector return empty array I have taken a global variable to take previous frame values and passed values as described above to draw lines for contionus lanes lines.
 
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
+Below are the output of an image: 
 
 ![alt text][image1]
+![alt text][image2]
+![alt text][image3]
+![alt text][image4]
+![alt text][image5]
+![alt text][image6]
 
 
 ### 2. Identify potential shortcomings with your current pipeline
