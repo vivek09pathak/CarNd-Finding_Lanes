@@ -1,56 +1,56 @@
 # **Finding Lane Lines on the Road** 
-[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
-<img src="examples/laneLines_thirdPass.jpg" width="480" alt="Combined Image" />
-
-Overview
 ---
 
-When we drive, we use our eyes to decide where to go.  The lines on the road that show us where the lanes are act as our constant reference for where to steer the vehicle.  Naturally, one of the first things we would like to do in developing a self-driving car is to automatically detect lane lines using an algorithm.
+**Finding Lane Lines on the Road**
 
-In this project you will detect lane lines in images using Python and OpenCV.  OpenCV means "Open-Source Computer Vision", which is a package that has many useful tools for analyzing images.  
-
-To complete the project, two files will be submitted: a file containing project code and a file containing a brief write up explaining your solution. We have included template files to be used both for the [code](https://github.com/udacity/CarND-LaneLines-P1/blob/master/P1.ipynb) and the [writeup](https://github.com/udacity/CarND-LaneLines-P1/blob/master/writeup_template.md).The code file is called P1.ipynb and the writeup template is writeup_template.md 
-
-To meet specifications in the project, take a look at the requirements in the [project rubric](https://review.udacity.com/#!/rubrics/322/view)
+The goals / steps of this project are the following:
+* Make a pipeline that finds lane lines on the road
+* Reflect on your work in a written report
 
 
-Creating a Great Writeup
----
-For this project, a great writeup should provide a detailed response to the "Reflection" section of the [project rubric](https://review.udacity.com/#!/rubrics/322/view). There are three parts to the reflection:
+[//]: # (Image References)
 
-1. Describe the pipeline
+[image1]: ./test_images_output/solidWhiteCurve.jpg "solidWhiteCurve"
+[image2]: ./test_images_output/solidWhiteRight.jpg  "solidWhiteRight"
+[image3]: ./test_images_output/solidYellowCurve.jpg "solidYellowCurve"
+[image4]: ./test_images_output/solidYellowCurve2.jpg "solidYellowCurve2"
+[image5]: ./test_images_output/solidYellowLeft.jpg "solidYellowLeft"
+[image6]: ./test_images_output/whiteCarLaneSwitch.jpg "whiteCarLaneSwitch"
 
-2. Identify any shortcomings
-
-3. Suggest possible improvements
-
-We encourage using images in your writeup to demonstrate how your pipeline works.  
-
-All that said, please be concise!  We're not looking for you to write a book here: just a brief description.
-
-You're not required to use markdown for your writeup.  If you use another method please just submit a pdf of your writeup. Here is a link to a [writeup template file](https://github.com/udacity/CarND-LaneLines-P1/blob/master/writeup_template.md). 
-
-
-The Project
 ---
 
-## If you have already installed the [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md) you should be good to go!   If not, you should install the starter kit to get started on this project. ##
+### Reflection
 
-**Step 1:** Set up the [CarND Term1 Starter Kit](https://classroom.udacity.com/nanodegrees/nd013/parts/fbf77062-5703-404e-b60c-95b78b2f3f9e/modules/83ec35ee-1e02-48a5-bdb7-d244bd47c2dc/lessons/8c82408b-a217-4d09-b81d-1bda4c6380ef/concepts/4f1870e0-3849-43e4-b670-12e6f2d4b7a7) if you haven't already.
+### 1. Pipeline Description:
+   * **My pipeline consisted of 7 steps.**
+     *  **Step 1:** Converting my image to Gray-Scale.
+     *  **Step 2:** Applying Gaussian blur to Gray-Scale image for further smoothening and suppressing noise and eliminating spurious                       gradients by averaging and save image output in the blur.
+     *  **Step 3:** On Gaussian smoothen image called blur we apply canny edge detection to detect edges on the image by setting                             Low and high threshold as 50 and 150 respectively.
+     *  **Step 4**  Now, masking image with region_of_interest function on canny image(edge).I have taken a quadrilateral polygon as                         region of interest and have taken differents ROI for Videos.As for **solidWhiteRight** (0,imshape[0]),(410,340), (590,340),(imshape[1],imshape[0]) and for **solidYellowLeft** (0,imshape[0]),(410,360), (590,360),(imshape[1],imshape[0])
+     *  **Step 5**  Apply hough transform on region of interest image(mask) to get lane lines on the road.
+     *  **Step 6**  In extrapolating on lines detcted from hough transform to draw continous lines on the image from hough transform function I have called separate_lines.
+     *  **Step 7**  Image obtained from separate_lines() we apply it with initial image to weighted_img function to get final image as result.
+   * **In order to draw a single line on the left and right lanes, I modified the draw_lines() function as follows:**
+   
+		* From the draw_lines function I have called the separate_lines() function with lines obtained from hough transform and masked image on which lines has to been drawn.In function I have appended the left and right coordinates in array by taking x2 < 500 and x1<480 value of the image and slope < 0.2 to segregate left lane otherwise as right lane.For non empty array passed array of x and y coordinates in polyfit function to get slope and coefficient of gradient for the lanes.Then, passed the masked image,polyfit values and array of x,y values to respective right and left lane function to draw lines.To draw lines,Taken min and max value from the array for x coordinates and put those value in Y=mX+c function to get y-coordinates and drawn lines using cv.line() function.	 
+		* For the bad frames where vector return empty array I have taken a global variable to take previous frame values and passed values as described above to draw lines for contionus lanes lines.
 
-**Step 2:** Open the code in a Jupyter Notebook
+Below are the output of an image: 
 
-You will complete the project code in a Jupyter notebook.  If you are unfamiliar with Jupyter Notebooks, check out <A HREF="https://www.packtpub.com/books/content/basics-jupyter-notebook-and-python" target="_blank">Cyrille Rossant's Basics of Jupyter Notebook and Python</A> to get started.
+![alt text][image1]
+![alt text][image2]
+![alt text][image3]
+![alt text][image4]
+![alt text][image5]
+![alt text][image6]
 
-Jupyter is an Ipython notebook where you can run blocks of code and see results interactively.  All the code for this project is contained in a Jupyter notebook. To start Jupyter in your browser, use terminal to navigate to your project directory and then run the following command at the terminal prompt (be sure you've activated your Python 3 carnd-term1 environment as described in the [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md) installation instructions!):
 
-`> jupyter notebook`
+### 2. Identify potential shortcomings with your current pipeline
+   * One potential shortcoming would be that taking in consideration of previous frame to draw lines in-case of no lines detected 
+   * Secondly,the pipeline will not able to detect different intesity of same color on the lane.
 
-A browser window will appear showing the contents of the current directory.  Click on the file called "P1.ipynb".  Another browser window will appear displaying the notebook.  Follow the instructions in the notebook to complete the project.  
 
-**Step 3:** Complete the project and submit both the Ipython notebook and the project writeup
-
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
-
+### 3. Suggest possible improvements to your pipeline
+   * A possible improvement would be that building method to able to generate different region of interest for different situations.
+   * Using different models to detect color of lines of different intensity for same color due to shadow,etc so that lane can be indentified correctly.
